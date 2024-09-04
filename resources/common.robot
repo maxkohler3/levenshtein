@@ -7,6 +7,8 @@ Library                   Collections
 Library                   RequestsLibrary
 Library                   FakerLibrary
 Library                   ExcelLibrary
+Library                   levenshtein_bridge.py
+Library                   dates.py
 
 
 *** Variables ***
