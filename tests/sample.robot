@@ -27,3 +27,16 @@ Days of Month Examples
     ${start_date}=          Nth Day of Month    ${current_date}     nth_day=1    months=-1    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
     ${end_date}=            Nth Day of Month    ${current_date}     nth_day=-1   months=23    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
     ${opp_end_date}=        Nth Day of Month    ${current_date}     nth_day=-1   months=-1    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
+
+Pendulum Examples
+    ${now}           pendulum.now
+    ${torontoDate}   Evaluate     $now.in_timezone("America/Toronto")
+    ${formatDate}    Evaluate     $now.format('dddd DD MMMM YYYY')
+    ${formatDate2}   Evaluate     $now.format('MM/DD/YYYY')
+    ${year}          Evaluate     $now.year
+    ${month}         Evaluate     $now.month 
+    ${day}           Evaluate     $now.day 
+    ${hour}          Evaluate     $now.hour 
+    ${minute}        Evaluate     $now.minute 
+    ${second}        Evaluate     $now.second
+    ${convertDate}  Convert Date  ${torontoDate}  date_format=%m/%d/%Y   result_format=%-m/%-d/%Y
