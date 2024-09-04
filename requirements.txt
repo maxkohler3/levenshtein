@@ -2,3 +2,8 @@ python-Levenshtein
 fuzzywuzzy
 python-dateutil
 typing
+robotframework-excellib
+pendulum
+gitpython
+openpyxl
+
