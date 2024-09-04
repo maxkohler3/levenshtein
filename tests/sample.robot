@@ -1,6 +1,5 @@
 *** Settings ***
 Resource               ../resources/common.robot
-#Resource               ../resources/locator.robot
 # Library                ../resources/levenshtein_bridge.py
 # Library                ../resources/dates.py
 Library                QForce
