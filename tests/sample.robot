@@ -12,7 +12,7 @@ Suite Teardown         CloseAllBrowsers
  
 *** Test Cases ***
 
-TC02  
+Calculate diff using Levenshtein lib 
     [Tags]             TC02                        BEAU_Order_POC
     [Documentation]    BEAU Testing POC
 
