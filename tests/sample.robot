@@ -16,7 +16,6 @@ TC02
     [Tags]             TC02                        BEAU_Order_POC
     [Documentation]    BEAU Testing POC
 
-    #logging in to System Admin
     ${levi_result}=    Get Levenshtein Distance    Srijan  Vishisth
 
 
@@ -24,7 +23,7 @@ Days of Month Examples
     ${current_date}=          Get Current Date    exclude_millis=true    result_format=%m/%d/%Y
     ${first_day_of_month}=    Nth Day of Month    ${current_date}     nth_day=1    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y 
 
-    ${invoice_start_date}=    Nth Day of Month    ${current_date}     nth_day=1                 date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
+    ${opp_start_date}=    Nth Day of Month    ${current_date}     nth_day=1                 date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
     ${start_date}=            Nth Day of Month    ${current_date}     nth_day=1    months=-1    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
     ${end_date}=              Nth Day of Month    ${current_date}     nth_day=-1   months=23    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
-    ${last_invoice_date}=     Nth Day of Month    ${current_date}     nth_day=-1   months=-1    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
+    ${opp_end_date}=     Nth Day of Month    ${current_date}     nth_day=-1   months=-1    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
