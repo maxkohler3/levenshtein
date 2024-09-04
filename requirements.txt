@@ -1,2 +1,4 @@
 python-Levenshtein
 fuzzywuzzy
+python-dateutil
+typing
