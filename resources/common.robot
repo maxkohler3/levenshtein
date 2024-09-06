@@ -36,6 +36,8 @@ Setup Browser
 End suite
     Set Library Search Order                          QWeb
     Close All Browsers
+    DeleteAllCookies
+    
 
 Login
     [Documentation]       Login to Salesforce instance
@@ -179,3 +181,9 @@ Pick Many
     # Test steps
     #@{options}=                 Create List                 Seeking In Person Care      General questions
     #Pick Many                   Purpose of Call             @{options}
+
+Calculate Day of Month
+    [Arguments]        ${day}    ${months}
+    ${current_date}=   Get Current Date    exclude_millis=true    result_format=%m/%d/%Y
+    ${endDate}=        Nth Day of Month    ${current_date}     nth_day=${day}   months=${months}    date_format=%m/%d/%Y  result_format=%-m/%-d/%Y
+    [Return]           ${endDate}
