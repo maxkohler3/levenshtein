@@ -21,6 +21,21 @@ ${EMAIL}       maxrobotic2@gmail.com
 
 *** Test Cases ***
 
+Outlook
+    GoTo    https://outlook.live.com
+    ClickText    Sign in 
+    WriteText    maxrobotic2@outlook.com
+    SwitchWindow    NEW
+    ClickText    Next    tag=button
+    TypeText     Password    Copado123$
+    ClickText    Sign in
+    ClickCheckbox            Don't show this again    on
+    ClickText    Yes
+    VerifyText               crt testing 
+    ClickText                crt testing 
+    ${accountNumber}         GetText                  Account    from_end=8
+
+
 Get URL from Email
     [Tags]             url    email
     [Documentation]    Sample test to Open all URL available in an email
