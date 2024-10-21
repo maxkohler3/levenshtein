@@ -10,11 +10,11 @@ Suite Teardown         CloseAllBrowsers
 
 
 *** Variables ***
-${user}      robert.striekwold@gmail.com              
+${user}      maxrobotic2@gmail.com            
 ${APPPASSGMAIL}
-${sender}     robert.striekwold@gmail.com             
+${sender}     maxrobotic2@gmail.com             
 ${subject}    
-${recipients}  rstriekwold@copado.com           
+${recipients}  mkohler@copado.com           
 ${replyTo}           
 ${EMAIL}               emailAddressGmailAccount 
 
