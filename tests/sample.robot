@@ -1,7 +1,7 @@
 *** Settings ***
 Resource               ../resources/common.robot
-# Library                ../resources/levenshtein_bridge.py
-# Library                ../resources/dates.py
+Library                ../resources/levenshtein_bridge.py
+Library                ../resources/dates.py
 Library                QForce
 Suite Setup            OpenBrowser  about:blank  chrome
 Library                String
