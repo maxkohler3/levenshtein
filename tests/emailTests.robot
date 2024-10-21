@@ -4,7 +4,7 @@ Library                DateTime
 Library                Collections
 Library                ../libraries/smtp.py
 Library                ../libraries/verifyEmail.py
-Library    OperatingSystem
+Library                OperatingSystem
 Suite Setup            OpenBrowser                 About:blank               Chrome
 Suite Teardown         CloseAllBrowsers
 
@@ -16,8 +16,7 @@ ${sender}     maxrobotic2@gmail.com
 ${subject}    
 ${recipients}  mkohler@copado.com           
 ${replyTo}           
-${EMAIL}               emailAddressGmailAccount 
-
+${EMAIL}       maxrobotic2@gmail.com 
 
 
 *** Test Cases ***
@@ -39,8 +38,8 @@ Get URL from Email
 Verify New Mail Exist
     [Tags]             url    email    verifyemail
     [Documentation]    Check if unread email exist based on something in the subject and body
-    ${SUBJECT}=        Convert To String           something in the subject
-    ${textInBody}=     Convert To String           something in the body
+    ${SUBJECT}=        Convert To String           crt testing
+    ${textInBody}=     Convert To String           Account \# abcd1234
     ${test}=           Verify Email Exist          email=${EMAIL}       pwd=${APPPASSGMAIL}    subject=${SUBJECT}    inbody=${textInBody}
     
 
