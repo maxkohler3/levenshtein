@@ -81,3 +81,9 @@ this is a testcase with attachment
     ...                ${user}           
     ...                ${APPPASSGMAIL}
     ...                ${files}
+
+
+# and as last every python function is using this
+# bodies = [msg.txt for msg in mailbox.fetch(AND(subject=subject, text=inbody, seen=False), reverse = True)]
+# so it need to contain some text in the subject and contain some text in the body to find the email
+# seen=false means it needs to be an unread email after reading it even with the api it will be marked as read so if you want to test it again just mark the email by hand to unread
