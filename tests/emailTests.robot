@@ -2,8 +2,8 @@
 Library                QForce
 Library                DateTime
 Library                Collections
-Library                ../libraries/smtp.py
-Library                ../libraries/verifyEmail.py
+Library                ../resources/smtp.py
+Library                ../resources/verifyEmail.py
 Library                OperatingSystem
 Suite Setup            OpenBrowser                 About:blank               Chrome
 Suite Teardown         CloseAllBrowsers
