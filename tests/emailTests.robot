@@ -24,8 +24,8 @@ ${EMAIL}       maxrobotic2@gmail.com
 Outlook
     GoTo    https://outlook.live.com
     ClickText    Sign in 
-    WriteText    maxrobotic2@outlook.com
     SwitchWindow    NEW
+    WriteText    maxrobotic2@outlook.com
     ClickText    Next    tag=button
     TypeText     Password    Copado123$
     ClickText    Sign in
