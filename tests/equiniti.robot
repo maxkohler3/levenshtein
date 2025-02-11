@@ -1,6 +1,6 @@
 *** Settings ***
 
-Documentation          Test cases for verifying emails
+Documentation          Test cases 
 Library                QWeb
 Suite Setup            Open Browser                about:blank          chrome
 Suite Teardown         Close All Browsers
@@ -13,9 +13,15 @@ TC1
     GoTo            https://equiniti--qarel.sandbox.my.salesforce.com
     TypeText        Username    mkohler@copado.com
     TypeText        Password    Copado123$
+    ClickText       Log In to Sandbox
+    GoTo            https://equiniti--qarel.sandbox.lightning.force.com/lightning/r/Apttus_Config2__Order__c/a3tS8000000n36PIAQ/view
+    ClickItem       Configure Products    
+
+    UseTable        1
+
     VerifyText            Product Catalog             timeout=90s
     ClickText             ${productCategory1}
-    verifytext            ${productName1}     timeout=30s
+    Verifytext            ${productName1}     timeout=30s
     ClickElement          //label[@for\='#product-${productID1}']
     VerifyText            ${productName2}
     ClickElement          //label[@for\='#product-${productID2}']
