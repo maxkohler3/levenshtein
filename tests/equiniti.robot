@@ -5,7 +5,18 @@ Library                QWeb
 Suite Setup            Open Browser                about:blank          chrome
 Suite Teardown         Close All Browsers
 
-*** Variables ***
+*** Keywords ***
+
+Click Conga Cell
+    [Arguments]         ${row}                      ${header}
+    ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
+    ${header_index}=    Evaluate                    ${header_index}+2
+    ClickCell           r${row}/c${header_index}
+Click Conga Cell Link
+    [Arguments]         ${row}                      ${header}
+    ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
+    ${header_index}=    Evaluate                    ${header_index}+2
+    ClickCell           r${row}/c${header_index}    tag=a
 
 
 *** Test Cases ***
@@ -15,9 +26,9 @@ TC1
     TypeText        Password    Copado123$
     ClickText       Log In to Sandbox
     GoTo            https://equiniti--qarel.sandbox.lightning.force.com/lightning/r/Apttus_Config2__Order__c/a3tS8000000n36PIAQ/view
+    ScrollTo        Configure Products
     ClickItem       Configure Products    
 
-    UseTable        1
 
     VerifyText            Product Catalog             timeout=90s
     ClickText             ${productCategory1}
