@@ -2,6 +2,9 @@
 
 Documentation          Test cases 
 Library                QWeb
+Library                String 
+Library                QForce
+Library                QVision
 Suite Setup            Open Browser                about:blank          chrome
 Suite Teardown         Close All Browsers
 
@@ -62,9 +65,15 @@ TC1
     TypeText        Password    Copado123$
     ClickText       Log In to Sandbox
     GoTo            https://equiniti--qarel.sandbox.lightning.force.com/lightning/r/Apttus_Config2__Order__c/a3tS8000000n36PIAQ/view
-    ScrollTo        Configure Products
+    VerifyText      Dates & Billing Information
+    ScrollTo        Configure Products   
     ClickItem       Configure Products    
+    VerifyText      Payment Term
 
+    ${example_text}=     GetCongaText                Product       2
+    ${example_text2}=    GetCongaText                Start Date    4
+    ClickCongaCell       Product                     3
+    TypeCongaCell        Quantity                    7             5
 
 Conga case
     [tags]               conga
