@@ -18,6 +18,42 @@ Click Conga Cell Link
     ${header_index}=    Evaluate                    ${header_index}+2
     ClickCell           r${row}/c${header_index}    tag=a
 
+GetHeaderIndex
+    [Documentation]
+    [Arguments]                 ${header}
+    ${header_index_full}=       GetAttribute                //div[@role\="columnheader" and contains(@title,"${header}")]//span[@id] | //div[@role\="columnheader"]//span[@title\="${header}"]    id
+    RETURN                      ${header_index_full}
+
+ClickCongaCell
+    [Documentation]
+    [Arguments]                 ${header}                   ${row}
+    ${header_index_full}        GetHeaderIndex              ${header}
+    ${header_index}=            Split String                ${header_index_full}        -
+    ${row}=                     Evaluate                    int($row)-1
+    ClickElement                //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
+
+GetCongaText
+    [Documentation]
+    [Arguments]                 ${header}                   ${row}
+    ${header_index_full}        GetHeaderIndex              ${header}
+    ${header_index}=            Split String                ${header_index_full}        -
+    ${row}=                     Evaluate                    int($row)-1
+    ${input}                    IsElement                   //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input
+    IF                          ${input}
+        ${text}=                GetAttribute                //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input                   title
+    ELSE
+        ${text}=                GetText                     //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
+    END
+    RETURN                      ${text}
+
+TypeCongaCell
+    [Documentation]
+    [Arguments]                 ${header}                   ${row}        ${input_text}
+    ${header_index_full}        GetHeaderIndex              ${header}
+    ${header_index}=            Split String                ${header_index_full}        -
+    ${row}=                     Evaluate                    int($row)-1
+    TypeText                    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    ${input_text}   click=True
+
 
 *** Test Cases ***
 TC1
@@ -29,6 +65,20 @@ TC1
     ScrollTo        Configure Products
     ClickItem       Configure Products    
 
+
+Conga case
+    [tags]               conga
+    Appstate             Home
+    GoTo                 https://equiniti--qarel.sandbox.lightning.force.com/lightning/r/Apttus_Config2__Order__c/a3tS8000000n36PIAQ/view
+    VerifyText           Dates & Billing Information
+    ScrollTo             Configure Products
+    ClickItem            Configure Products
+    VerifyText           Payment Term
+
+    ${example_text}=     GetCongaText                Product       2
+    ${example_text2}=    GetCongaText                Start Date    4
+    ClickCongaCell       Product                     3
+    TypeCongaCell        Quantity                    7             5
 
     VerifyText            Product Catalog             timeout=90s
     ClickText             ${productCategory1}
