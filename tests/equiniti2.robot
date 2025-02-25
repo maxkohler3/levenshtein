@@ -10,10 +10,10 @@ Suite Teardown         Close All Browsers
 
 *** Keywords ***
 GetHeaderIndex
-    [Documentation]    Returns the header index for a given column header
-    [Arguments]        ${header}
-    ${header_index_full}=    GetAttribute    //div[@role="columnheader" and contains(@title,"${header}")]//span[@id] | //div[@role="columnheader"]//span[@title="${header}"]    id
-    RETURN            ${header_index_full}
+    [Documentation]
+    [Arguments]                 ${header}
+    ${header_index_full}=       GetAttribute                //div[@role\="columnheader" and contains(@title,"${header}")]//span[@id] | //div[@role\="columnheader"]//span[@title\="${header}"]    id
+    RETURN                      ${header_index_full}
 
 GetRowIndexByProduct
     [Documentation]    Returns the row index for a given product name
