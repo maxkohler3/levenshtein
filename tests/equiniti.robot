@@ -15,11 +15,12 @@ Suite Teardown         Close All Browsers
 #     ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
 #     ${header_index}=    Evaluate                    ${header_index}+2
 #     ClickCell           r${row}/c${header_index}
-Click Conga Cell Link
-    [Arguments]         ${row}                      ${header}
-    ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
-    ${header_index}=    Evaluate                    ${header_index}+2
-    ClickCell           r${row}/c${header_index}    tag=a
+
+# Click Conga Cell Link
+#     [Arguments]         ${row}                      ${header}
+#     ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
+#     ${header_index}=    Evaluate                    ${header_index}+2
+#     ClickCell           r${row}/c${header_index}    tag=a
 
 GetHeaderIndex
     [Documentation]
@@ -74,6 +75,7 @@ TC1
     ${example_text2}=    GetCongaText                Start Date    4
     ClickCongaCell       Product                     3
     TypeCongaCell        Quantity                    7             5
+    ClickCongaCell       Location                    
 
 Conga case
     [tags]               conga
