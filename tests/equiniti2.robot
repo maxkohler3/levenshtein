@@ -36,7 +36,6 @@ ClickCongaCell
     ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]   
 
 ClickButtonInCongaCell
-    ClickCongaCell
     [Documentation]    Clicks a cell in the grid based on column header and product name
     [Arguments]        ${header}    ${product_name}
     ${header_index_full}    GetHeaderIndex    ${header}
@@ -78,7 +77,7 @@ TC1
     VerifyText      Dates & Billing Information
     ScrollTo        Configure Products   
     ClickItem       Configure Products    
-    VerifyText      Payment Term   delay=1
+    VerifyText      Payment Term   delay=3
 
     ${productName}=     GetCongaText       Product       Court Meeting Poll scrutiny
     ${productName2}=    GetCongaText       Product       Court Meeting Printing Fee
@@ -89,7 +88,7 @@ TC1
 
     TypeCongaCell        Quantity           ${productName}    10
     TypeCongaCell        Quantity           ${productName2}   5
-    ClickButtoninCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
+    ClickButtonInCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
     ClickElement         //span[@class\=fa fa-search]
 
 # *** Keywords ***
