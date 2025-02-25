@@ -55,7 +55,7 @@ TypeCongaCell
     ${header_index_full}    GetHeaderIndex    ${header}
     ${header_index}=    Split String    ${header_index_full}    -
     ${row}=    GetRowIndexByProduct    ${product_name}
-    TypeText    //*[@id="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    ${input_text}    click=True
+    TypeText    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    ${input_text}    click=True
 
 
 *** Test Cases ***
@@ -73,11 +73,11 @@ TC1
 
     GetHeaderIndex
     # Instead of using row numbers, now using product names
-    ${example_text}=     GetCongaText       Product       1
-    ${example_text2}=    GetCongaText       Start Date    Product Name 2
-    ClickCongaCell       Product            Product Name 1
-    TypeCongaCell        Quantity           Product Name 1    5
-    ClickCongaCell       Location           Product Name 2
+    ${example_text}=     GetCongaText       Product       Court Meeting Poll scrutiny
+    ${example_text2}=    GetCongaText       Start Date    Court Meeting Poll scrutiny
+    ClickCongaCell       Payment Term       Court Meeting Poll scrutiny
+    TypeCongaCell        Quantity           Court Meeting Poll scrutiny   5
+    ClickCongaCell       Location           Court Meeting Poll scrutiny
 
 # *** Keywords ***
 
