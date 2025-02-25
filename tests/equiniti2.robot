@@ -89,7 +89,7 @@ TC1
 
     TypeCongaCell        Quantity           ${productName}    10
     TypeCongaCell        Quantity           ${productName2}   5
-    ClickCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
+    ClickButtoninCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
     ClickElement         //span[@class\=fa fa-search]
 
 # *** Keywords ***
