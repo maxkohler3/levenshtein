@@ -78,8 +78,9 @@ TC1
     ClickCongaCell       Payment Term       Court Meeting Poll scrutiny
     ClickText            Net 60 Days
 
-    TypeCongaCell        Quantity           Court Meeting Poll scrutiny   5
-    ClickCongaCell       Location           Court Meeting Poll scrutiny
+    TypeCongaCell        Quantity           ${productName}    10
+    TypeCongaCell        Quantity           ${productName2}   5
+    ClickCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
 
 # *** Keywords ***
 
