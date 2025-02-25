@@ -22,7 +22,7 @@ GetRowIndexByProduct
     ${header_index}=    Split String    ${header_index_full}    -
     ${rows}=    GetElementCount    //*[contains(@id,"${header_index}[0]-") and contains(@id,"-uiGrid-${header_index}[2]-cell")]
     FOR    ${index}    IN RANGE    ${rows}
-        ${cell_text}=    GetText    //*[@id="${header_index}[0]-${index}-uiGrid-${header_index}[2]-cell"]
+        ${cell_text}=    GetText    //*[@id\="${header_index}[0]-${index}-uiGrid-${header_index}[2]-cell"]
         IF    '${cell_text}' == '${product_name}'    RETURN    ${index}
     END
     Fail    Product '${product_name}' not found in the grid
@@ -33,7 +33,7 @@ ClickCongaCell
     ${header_index_full}    GetHeaderIndex    ${header}
     ${header_index}=    Split String    ${header_index_full}    -
     ${row}=    GetRowIndexByProduct    ${product_name}
-    ClickElement    //*[@id="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
+    ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
 
 GetCongaText
     [Documentation]    Gets text from a cell based on column header and product name
@@ -41,11 +41,11 @@ GetCongaText
     ${header_index_full}    GetHeaderIndex    ${header}
     ${header_index}=    Split String    ${header_index_full}    -
     ${row}=    GetRowIndexByProduct    ${product_name}
-    ${input}    IsElement    //*[@id="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input
+    ${input}    IsElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input
     IF    ${input}
-        ${text}=    GetAttribute    //*[@id="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    title
+        ${text}=    GetAttribute    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    title
     ELSE
-        ${text}=    GetText    //*[@id="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
+        ${text}=    GetText    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
     END
     RETURN    ${text}
 
@@ -69,8 +69,9 @@ TC1
     VerifyText      Dates & Billing Information
     ScrollTo        Configure Products   
     ClickItem       Configure Products    
-    VerifyText      Payment Term
+    VerifyText      Payment Term   delay=1
 
+    GetHeaderIndex
     # Instead of using row numbers, now using product names
     ${example_text}=     GetCongaText       Product       1
     ${example_text2}=    GetCongaText       Start Date    Product Name 2
