@@ -55,7 +55,7 @@ TypeCongaCell
     ${header_index_full}    GetHeaderIndex    ${header}
     ${header_index}=    Split String    ${header_index_full}    -
     ${row}=    GetRowIndexByProduct    ${product_name}
-    TypeText    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    ${input_text}    click=True
+    TypeText    //*[@id="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]//input    ${input_text}    click=True
 
 
 *** Test Cases ***
@@ -71,8 +71,6 @@ TC1
     ClickItem       Configure Products    
     VerifyText      Payment Term   delay=1
 
-    GetHeaderIndex
-    # Instead of using row numbers, now using product names
     ${example_text}=     GetCongaText       Product       Court Meeting Poll scrutiny
     ${example_text2}=    GetCongaText       Start Date    Court Meeting Poll scrutiny
     ClickCongaCell       Payment Term       Court Meeting Poll scrutiny
