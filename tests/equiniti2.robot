@@ -1,10 +1,7 @@
 *** Settings ***
-
-Documentation          Test cases 
 Library                QWeb
 Library                String 
 Library                QForce
-Library                QVision
 Suite Setup            Open Browser                about:blank          chrome
 Suite Teardown         Close All Browsers
 
@@ -34,14 +31,6 @@ ClickCongaCell
     ${header_index}=    Split String    ${header_index_full}    -
     ${row}=    GetRowIndexByProduct    ${product_name}
     ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]   
-
-ClickButtonInCongaCell
-    [Documentation]    Clicks a cell in the grid based on column header and product name
-    [Arguments]        ${header}    ${product_name}
-    ${header_index_full}    GetHeaderIndex    ${header}
-    ${header_index}=    Split String    ${header_index_full}    -
-    ${row}=    GetRowIndexByProduct    ${product_name}
-    ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]    tag=button
 
 GetCongaText
     [Documentation]    Gets text from a cell based on column header and product name
@@ -88,15 +77,15 @@ TC1
 
     TypeCongaCell        Quantity           ${productName}    10
     TypeCongaCell        Quantity           ${productName2}   5
-    ClickButtonInCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
-    ClickElement         //span[@class\=fa fa-search]
+
+    ClickElement         //span[@class\="fa fa-search"]    parent=//*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"] 
 
 # *** Keywords ***
 
 # GetHeaderIndex
 #     [Documentation]
 #     [Arguments]                 ${header}
-    ${header_index_full}=       GetAttribute                //div[@role\="columnheader" and contains(@title,"${header}")]//span[@id] | //div[@role\="columnheader"]//span[@title\="${header}"]    id
+    # ${header_index_full}=       GetAttribute                //div[@role\="columnheader" and contains(@title,"${header}")]//span[@id] | //div[@role\="columnheader"]//span[@title\="${header}"]    id
 #     RETURN                      ${header_index_full}
 
 # ClickCongaCell
