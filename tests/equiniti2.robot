@@ -33,7 +33,16 @@ ClickCongaCell
     ${header_index_full}    GetHeaderIndex    ${header}
     ${header_index}=    Split String    ${header_index_full}    -
     ${row}=    GetRowIndexByProduct    ${product_name}
-    ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]
+    ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]   
+
+ClickButtonInCongaCell
+    ClickCongaCell
+    [Documentation]    Clicks a cell in the grid based on column header and product name
+    [Arguments]        ${header}    ${product_name}
+    ${header_index_full}    GetHeaderIndex    ${header}
+    ${header_index}=    Split String    ${header_index_full}    -
+    ${row}=    GetRowIndexByProduct    ${product_name}
+    ClickElement    //*[@id\="${header_index}[0]-${row}-uiGrid-${header_index}[2]-cell"]    tag=button
 
 GetCongaText
     [Documentation]    Gets text from a cell based on column header and product name
@@ -75,12 +84,13 @@ TC1
     ${productName2}=    GetCongaText       Product       Court Meeting Printing Fee
     ${startDate1}=      GetCongaText       Start Date    Court Meeting Poll scrutiny
 
-    ClickCongaCell       Payment Term       Court Meeting Poll scrutiny
+    ClickCongaCell       Payment Term       ${productName}
     ClickText            Net 60 Days
 
     TypeCongaCell        Quantity           ${productName}    10
     TypeCongaCell        Quantity           ${productName2}   5
     ClickCongaCell       Location           Bearer Share Service \- Additional Transactions Fee
+    ClickElement         //span[@class\=fa fa-search]
 
 # *** Keywords ***
 
