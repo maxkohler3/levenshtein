@@ -10,11 +10,11 @@ Suite Teardown         Close All Browsers
 
 *** Keywords ***
 
-Click Conga Cell
-    [Arguments]         ${row}                      ${header}
-    ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
-    ${header_index}=    Evaluate                    ${header_index}+2
-    ClickCell           r${row}/c${header_index}
+# Click Conga Cell
+#     [Arguments]         ${row}                      ${header}
+#     ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
+#     ${header_index}=    Evaluate                    ${header_index}+2
+#     ClickCell           r${row}/c${header_index}
 Click Conga Cell Link
     [Arguments]         ${row}                      ${header}
     ${header_index}     GetAttribute                ${header}                   data-index           tag=th    partial_match=False
