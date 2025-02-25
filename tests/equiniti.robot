@@ -49,8 +49,6 @@ TypeCongaCell
 
 
 *** Test Cases ***
-
-*** Test Cases ***
     GoTo            https://equiniti--qarel.sandbox.my.salesforce.com
     TypeText        Username    mkohler@copado.com
     TypeText        Password    Copado123$
@@ -59,7 +57,7 @@ TypeCongaCell
     VerifyText      Dates & Billing Information
     ScrollTo        Configure Products   
     ClickItem       Configure Products    
-    VerifyText      Payment Term
+    VerifyText      Payment Term   delay=1
 
     ${example_text}=     GetCongaText                Product       2
     ${example_text2}=    GetCongaText                Start Date    4
