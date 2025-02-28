@@ -1,61 +1,86 @@
-# *** Settings ***
-# Library                SeleniumLibrary
-# Library                AxeLibrary
-# Suite Setup            OpenBrowser                 About:blank               Chrome
-# Suite Teardown         CloseAllBrowsers
 
+# # tests/accessibility.robot
+
+# *** Settings ***
+# Library            QWeb
+# Library            ../libraries/axe_test.py
+
+# Suite Teardown      Close All Browsers
+
+# *** Variables ***
+
+# # download axe.min.js file from https://www.cdnpkg.com/axe-core/file/axe.min.js/
+# ${AXE}              ${CURDIR}/../resources/axe.min.js
 
 # *** Test Cases ***
-# Google Accessibility Test
-#    Open Browser    https://www.google.com/    Chrome
-   
-#    # execute accessibility tests
-#    &{results}=    Run Accessibility Tests    google.json
-#    Log   Violations Count: ${results.violations}
-
-#    # log violation result to log.html
-#    Log Readable Accessibility Result    violations
-#    [Teardown]    Close All Browsers
-
+# TestLogin
+#     [Documentation]      Run Axe accessibility tests
+#     [Tags]               Axe
+#     Open Browser        https://www.google.com     chrome
+#     Sleep               3
+#     ${driver}=          Return Browser
+#     Run Axe             ${driver}   ${AXE} 
 
 
 
 *** Settings ***
-Documentation                   https://www.deque.com/axe/
-Library                         SeleniumLibrary
-Library                         QVision    #Only for screenshot in the report
-Library                         AxeLibrary
-Library                         JSONLibrary
-Test Setup                      Open Browser    about:blank    chrome
-Test Template                   Test Page For Accessibility
+Library                SeleniumLibrary
+Library                AxeLibrary
+Suite Setup            OpenBrowser                 About:blank               Chrome
+Suite Teardown         CloseAllBrowsers
 
-*** Test Cases ***            page
-Main Page                     ${baseUrl}
-Journey Planner               ${baseUrl}/transport-and-directions/getting-to-central-london/journey-planner
-Heathrow Parking              ${baseUrl}/transport-and-directions/heathrow-parking
 
-*** Keywords ***
-Test Page For Accessibility
-    [Arguments]                 ${page}
-    # Open Browser                ${page}                     Chrome
-    Set Selenium Timeout	       15 seconds
-    Go To                       ${page}
-    Sleep                       5
-    Click Element               //button[@id\="tealium_ensCloseBanner"]
-    Sleep                       5
-    Log Screenshot
-    # execute accessibility tests
-    # &{results}=                 Wait Until Keyword Succeeds	    15 sec	2 sec    Run Accessibility Tests     results.json
-    &{results}=                 Run Accessibility Tests     results.json
-    ${json_obj}=                Get Json Accessibility Result
-    Log                         Violations Count: ${results.violations}
-    Log                         Inapplicable Count: ${results.inapplicable}
-    Log                         Incomplete Count: ${results.incomplete}
-    Log                         Passes Count: ${results.passes}
+*** Test Cases ***
+Google Accessibility Test
+   Open Browser    https://www.google.com/    Chrome
+   
+   # execute accessibility tests
+   &{results}=    Run Accessibility Tests    google.json
+   Log   Violations Count: ${results.violations}
 
-    # log violation result to log.html
-    Log Readable Accessibility Result                       violations
-    [Teardown]                  Close All Browsers
+   # log violation result to log.html
+   Log Readable Accessibility Result    violations
+   [Teardown]    Close All Browsers
+
+
+
+
+# *** Settings ***
+# Documentation                   https://www.deque.com/axe/
+# Library                         SeleniumLibrary
+# Library                         QVision    #Only for screenshot in the report
+# Library                         AxeLibrary
+# Library                         JSONLibrary
+# Test Setup                      Open Browser    about:blank    chrome
+# Test Template                   Test Page For Accessibility
+
+# *** Test Cases ***            page
+# Main Page                     ${baseUrl}
+# Journey Planner               ${baseUrl}/transport-and-directions/getting-to-central-london/journey-planner
+# Heathrow Parking              ${baseUrl}/transport-and-directions/heathrow-parking
+
+# *** Keywords ***
+# Test Page For Accessibility
+#     [Arguments]                 ${page}
+#     # Open Browser                ${page}                     Chrome
+#     Set Selenium Timeout	       15 seconds
+#     Go To                       ${page}
+#     Sleep                       5
+#     Click Element               //button[@id\="tealium_ensCloseBanner"]
+#     Sleep                       5
+#     Log Screenshot
+#     # execute accessibility tests
+#     # &{results}=                 Wait Until Keyword Succeeds	    15 sec	2 sec    Run Accessibility Tests     results.json
+#     &{results}=                 Run Accessibility Tests     results.json
+#     ${json_obj}=                Get Json Accessibility Result
+#     Log                         Violations Count: ${results.violations}
+#     Log                         Inapplicable Count: ${results.inapplicable}
+#     Log                         Incomplete Count: ${results.incomplete}
+#     Log                         Passes Count: ${results.passes}
+
+#     # log violation result to log.html
+#     Log Readable Accessibility Result                       violations
+#     [Teardown]                  Close All Browsers
 
 
 
