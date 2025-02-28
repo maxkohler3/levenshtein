@@ -1,19 +1,32 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library    AXELibrary
 
 *** Variables ***
-${URL}    https://example.com
+${URL}    https://www.example.com
 ${BROWSER}    chrome
 
 *** Test Cases ***
-Open Website And Verify Title
-    Set Library Search Order    SeleniumLibrary
+Accessibility Test For Example Site
     Open Browser    ${URL}    ${BROWSER}
-    Title Should Be    Example Domain
+    Inject AXE Accessibility Script
+    Run Accessibility Test
+    Report Accessibility Violations
     Close Browser
 
 *** Keywords ***
-Title Should Be
-    [Arguments]    ${expected_title}
-    ${title}=    Get Title
-    Should Be Equal As Strings    ${title}    ${expected_title}
+Inject AXE Accessibility Script
+    Inject Axe JavaScript    https://cdn.jsdelivr.net/npm/axe-core@4.3.1/axe.min.js
+
+Run Accessibility Test
+    Execute Javascript    axe.run(function (err, results) { window.axeResults = results; })
+    ${violations}=    Get Javascript Result    return window.axeResults.violations
+    Run Keyword If    ${violations} != []    Fail    Accessibility violations found!
+
+Report Accessibility Violations
+    ${violations}=    Get Javascript Result    return window.axeResults.violations
+    :FOR    ${violation}    IN    @{violations}
+    \    Log    Violation: ${violation.id} - ${violation.description}
+    \    :FOR    ${node}    IN    @{violation.nodes}
+    \    \    Log    Node: ${node.html}
+    \    \    Log    Impact: ${node.impact}
