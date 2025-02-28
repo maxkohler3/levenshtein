@@ -7,6 +7,7 @@ ${BROWSER}    chrome
 
 *** Test Cases ***
 Open Website And Verify Title
+    Set Library Search Order    SeleniumLibrary
     Open Browser    ${URL}    ${BROWSER}
     Title Should Be    Example Domain
     Close Browser
