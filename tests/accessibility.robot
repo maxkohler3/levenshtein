@@ -1,46 +1,46 @@
 
-# # tests/accessibility.robot
-
-# *** Settings ***
-# Library            QWeb
-# Library            ../libraries/axe_test.py
-
-# Suite Teardown      Close All Browsers
-
-# *** Variables ***
-
-# # download axe.min.js file from https://www.cdnpkg.com/axe-core/file/axe.min.js/
-# ${AXE}              ${CURDIR}/../resources/axe.min.js
-
-# *** Test Cases ***
-# TestLogin
-#     [Documentation]      Run Axe accessibility tests
-#     [Tags]               Axe
-#     Open Browser        https://www.google.com     chrome
-#     Sleep               3
-#     ${driver}=          Return Browser
-#     Run Axe             ${driver}   ${AXE} 
-
-
+# tests/accessibility.robot
 
 *** Settings ***
-Library                SeleniumLibrary
-Library                AxeLibrary
-Suite Setup            OpenBrowser                 About:blank               Chrome
-Suite Teardown         CloseAllBrowsers
+Library            QWeb
+Library            ../libraries/axe_test.py
 
+Suite Teardown      Close All Browsers
+
+*** Variables ***
+
+# download axe.min.js file from https://www.cdnpkg.com/axe-core/file/axe.min.js/
+${AXE}              ${CURDIR}/../resources/axe.min.js
 
 *** Test Cases ***
-Google Accessibility Test
-   Open Browser    https://www.google.com/    Chrome
-   
-   # execute accessibility tests
-   &{results}=    Run Accessibility Tests    google.json
-   Log   Violations Count: ${results.violations}
+TestLogin
+    [Documentation]      Run Axe accessibility tests
+    [Tags]               Axe
+    Open Browser        https://www.google.com     chrome
+    Sleep               3
+    ${driver}=          Return Browser
+    Run Axe             ${driver}   ${AXE} 
 
-   # log violation result to log.html
-   Log Readable Accessibility Result    violations
-   [Teardown]    Close All Browsers
+
+
+# *** Settings ***
+# Library                SeleniumLibrary
+# Library                AxeLibrary
+# Suite Setup            OpenBrowser                 About:blank               Chrome
+# Suite Teardown         CloseAllBrowsers
+
+
+# *** Test Cases ***
+# Google Accessibility Test
+#    Open Browser    https://www.google.com/    Chrome
+   
+#    # execute accessibility tests
+#    &{results}=    Run Accessibility Tests    google.json
+#    Log   Violations Count: ${results.violations}
+
+#    # log violation result to log.html
+#    Log Readable Accessibility Result    violations
+#    [Teardown]    Close All Browsers
 
 
 
