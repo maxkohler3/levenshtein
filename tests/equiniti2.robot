@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    ../resources/common.robot
 Library                QWeb
 Library                String 
 Library                QForce
