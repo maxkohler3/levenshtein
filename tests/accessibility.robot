@@ -1,6 +1,6 @@
 *** Settings ***
-Library    SeleniumLibrary
-Library    AxeLibrary
+Library                SeleniumLibrary
+Library                AxeLibrary
 Suite Setup            OpenBrowser                 About:blank               Chrome
 Suite Teardown         CloseAllBrowsers
 
