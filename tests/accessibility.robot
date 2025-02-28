@@ -1,25 +1,25 @@
 
-# # tests/accessibility.robot
+# tests/accessibility.robot
 
-# *** Settings ***
-# Library            QWeb
-# Library            ../libraries/axe_test.py
+*** Settings ***
+Library            QWeb
+Library            ../libraries/axe_test.py
 
-# Suite Teardown      Close All Browsers
+Suite Teardown      Close All Browsers
 
-# *** Variables ***
+*** Variables ***
 
-# # download axe.min.js file from https://www.cdnpkg.com/axe-core/file/axe.min.js/
-# ${AXE}              ${CURDIR}/../resources/axe.min.js
+# download axe.min.js file from https://www.cdnpkg.com/axe-core/file/axe.min.js/
+${AXE}              ${CURDIR}/../resources/axe.min.js
 
-# *** Test Cases ***
-# TestLogin
-#     [Documentation]      Run Axe accessibility tests
-#     [Tags]               Axe
-#     Open Browser        https://www.google.com     chrome
-#     Sleep               3
-#     ${driver}=          Return Browser
-#     Run Axe             ${driver}   ${AXE} 
+*** Test Cases ***
+TestLogin
+    [Documentation]      Run Axe accessibility tests
+    [Tags]               Axe
+    Open Browser        https://www.google.com     chrome
+    Sleep               3
+    ${driver}=          Return Browser
+    Run Axe             ${driver}   ${AXE} 
 
 
 
