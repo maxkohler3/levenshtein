@@ -1,4 +1,26 @@
 
+*** Settings ***
+Library                SeleniumLibrary
+Library                AxeLibrary
+Suite Setup            OpenBrowser                 About:blank               Chrome
+Suite Teardown         CloseAllBrowsers
+
+
+*** Test Cases ***
+Google Accessibility Test
+   Open Browser    https://www.google.com/    Chrome
+   
+   # execute accessibility tests
+   &{results}=    Run Accessibility Tests    google.json
+   Log   Violations Count: ${results.violations}
+
+   # log violation result to log.html
+   Log Readable Accessibility Result    violations
+   [Teardown]    Close All Browsers
+
+
+
+
 # # tests/accessibility.robot
 
 # *** Settings ***
@@ -20,28 +42,6 @@
 #     Sleep               3
 #     ${driver}=          Return Browser
 #     Run Axe             ${driver}   ${AXE} 
-
-
-
-# *** Settings ***
-# Library                SeleniumLibrary
-# Library                AxeLibrary
-# Suite Setup            OpenBrowser                 About:blank               Chrome
-# Suite Teardown         CloseAllBrowsers
-
-
-# *** Test Cases ***
-# Google Accessibility Test
-#    Open Browser    https://www.google.com/    Chrome
-   
-#    # execute accessibility tests
-#    &{results}=    Run Accessibility Tests    google.json
-#    Log   Violations Count: ${results.violations}
-
-#    # log violation result to log.html
-#    Log Readable Accessibility Result    violations
-#    [Teardown]    Close All Browsers
-
 
 
 
